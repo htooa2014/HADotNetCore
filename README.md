@@ -1,1 +1,3 @@
-# DotNetTrainingBatch3
+ado.net crud
+dapper
+ef core
