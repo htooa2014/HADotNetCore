@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DotNetTrainingBatch3.ConsoleApp.AdoDotNetExamples;
+using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -66,16 +67,26 @@ Console.WriteLine("Hello, World!");
 //UI, BL, DA => SQL - ADO.Net
 
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-Console.WriteLine("Read ...");
-adoDotNetExample.Read();
-Console.WriteLine("Edit ...");
-adoDotNetExample.Edit(1);
-Console.WriteLine("Create ...");
-adoDotNetExample.Create("title2", "author2", "content2");
-Console.WriteLine("Update ...");
-adoDotNetExample.Update(3,"title2", "author2", "content2");
-Console.WriteLine("Delete ...");
-adoDotNetExample.Delete(10);
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+//Console.WriteLine("Read ...");
+//adoDotNetExample.Read();
+//Console.WriteLine("Edit ...");
+//adoDotNetExample.Edit(1);
+//Console.WriteLine("Create ...");
+//adoDotNetExample.Create("title2", "author2", "content2");
+//Console.WriteLine("Update ...");
+//adoDotNetExample.Update(3,"title2", "author2", "content2");
+//Console.WriteLine("Delete ...");
+//adoDotNetExample.Delete(10);
+
+
+DapperExample dappterEx = new DapperExample();
+dappterEx.Read();
+dappterEx.Edit(1);
+dappterEx.Create("Title3","Author3","Content3");
+dappterEx.Update(2, "Title4", "Author4", "Content4");
+dappterEx.Delete(13);
 
 Console.ReadKey();
+
+
