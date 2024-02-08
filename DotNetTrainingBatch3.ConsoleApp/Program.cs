@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DotNetTrainingBatch3.ConsoleApp.AdoDotNetExamples;
 using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
+using DotNetTrainingBatch3.ConsoleApp.EFCoreExamples;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -80,13 +81,21 @@ Console.WriteLine("Hello, World!");
 //adoDotNetExample.Delete(10);
 
 
-DapperExample dappterEx = new DapperExample();
-dappterEx.Read();
-dappterEx.Edit(1);
-dappterEx.Create("Title3","Author3","Content3");
-dappterEx.Update(2, "Title4", "Author4", "Content4");
-dappterEx.Delete(13);
+//DapperExample dappterEx = new DapperExample();
+//dappterEx.Read();
+//dappterEx.Edit(1);
+//dappterEx.Create("Title3","Author3","Content3");
+//dappterEx.Update(2, "Title4", "Author4", "Content4");
+//dappterEx.Delete(13);
 
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Read();
+eFCoreExample.Edit(1);
+eFCoreExample.Edit(122);
+eFCoreExample.Create("new title", "New author", "new content");
+eFCoreExample.Update(21, "211 title", "211 author", "211 content");
+eFCoreExample.Delete(9);
+eFCoreExample.Delete(223333333);
 Console.ReadKey();
 
 

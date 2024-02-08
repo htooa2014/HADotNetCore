@@ -1,3 +1,3 @@
 ado.net crud
 dapper
-ef core
+ef core (data first ,code first)
