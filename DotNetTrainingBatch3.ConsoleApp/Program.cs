@@ -101,6 +101,9 @@ Console.WriteLine("Hello, World!");
 Console.WriteLine("Waiting for API ....");
 Console.ReadKey();
 
+//HttpClientExample2 httpCClientExample =new HttpClientExample2();
+//await httpCClientExample.Run();
+
 HttpClientExample httpCClientExample =new HttpClientExample();
 await httpCClientExample.Run();
 

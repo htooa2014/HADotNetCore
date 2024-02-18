@@ -62,7 +62,7 @@ namespace DotNetTrainingBatch3.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteBlogs(int id)
         {
             var blog = _db.Blogs.FirstOrDefault(item => item.BlogId == id);
