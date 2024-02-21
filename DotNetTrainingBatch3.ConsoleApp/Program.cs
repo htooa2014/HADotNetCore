@@ -3,6 +3,8 @@ using DotNetTrainingBatch3.ConsoleApp.AdoDotNetExamples;
 using DotNetTrainingBatch3.ConsoleApp.DapperExamples;
 using DotNetTrainingBatch3.ConsoleApp.EFCoreExamples;
 using DotNetTrainingBatch3.ConsoleApp.HttpClientExamples;
+using DotNetTrainingBatch3.ConsoleApp.RefitExamples;
+using DotNetTrainingBatch3.ConsoleApp.RestClientExamples;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -104,8 +106,14 @@ Console.ReadKey();
 //HttpClientExample2 httpCClientExample =new HttpClientExample2();
 //await httpCClientExample.Run();
 
-HttpClientExample httpCClientExample =new HttpClientExample();
-await httpCClientExample.Run();
+//HttpClientExample httpCClientExample = new HttpClientExample();
+//await httpCClientExample.Run();
+
+RestClientExample restClientExample = new RestClientExample();
+await restClientExample.Run();
+
+//RefitExample refitExample= new RefitExample();
+//refitExample.Run();
 
 Console.ReadKey();
 
