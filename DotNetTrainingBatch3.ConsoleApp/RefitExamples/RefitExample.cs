@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+﻿using DotNetTrainingBatch3.ConsoleApp.Models;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,12 @@ namespace DotNetTrainingBatch3.ConsoleApp.RefitExamples
 
         public async Task Run()
         {
-            await Read();
+            //  await Read();
+            //  await Edit(1);
+            // await Edit(13333);
+            //  await Create("Kyaw Kyaw", "is", "a student");
+            //  await Update(1, "Meow Meow", "come","here !");
+            await Delete(33);
         }
 
         private async Task Read()
@@ -24,17 +30,102 @@ namespace DotNetTrainingBatch3.ConsoleApp.RefitExamples
            
             var list = await refitApi.GetBlogs();
 
+            foreach (BlogModel item in list)
+            {
+                Console.WriteLine(item.BlogId);
+                Console.WriteLine(item.BlogTitle);
+                Console.WriteLine(item.BlogAuthor);
+                Console.WriteLine(item.BlogContent);
+            }
 
-           
         }
 
         private async Task Edit(int id)
         {
             try
             {
-                var item = await refitApi.GetBlog(1);
+                var item = await refitApi.GetBlog(id);
+
+                Console.WriteLine(item.BlogId);
+                Console.WriteLine(item.BlogTitle);
+                Console.WriteLine(item.BlogAuthor);
+                Console.WriteLine(item.BlogContent);
+
             }
             catch(Refit.ApiException ex)
+            {
+                Console.WriteLine(ex.Content);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private async Task Create(string title,string author,string content) 
+        {
+            try
+            {
+                BlogModel blog = new BlogModel()
+                {
+                    BlogAuthor = author,
+                    BlogContent = content,
+                    BlogTitle = title
+                };
+                var result = await refitApi.CreateBlog(blog);
+
+                Console.WriteLine(result);
+            
+
+            }
+            catch (Refit.ApiException ex)
+            {
+                Console.WriteLine(ex.Content);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+
+        private async Task Update(int id,string title, string author, string content)
+        {
+            try
+            {
+                BlogModel blog = new BlogModel()
+                {
+                    BlogAuthor = author,
+                    BlogContent = content,
+                    BlogTitle = title
+                };
+                var result = await refitApi.UpdateBlog(id,blog);
+
+                Console.WriteLine(result);
+
+
+            }
+            catch (Refit.ApiException ex)
+            {
+                Console.WriteLine(ex.Content);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private async Task Delete(int id)
+        {
+            try
+            {
+                var result = await refitApi.DeleteBlog(id);
+
+               
+                Console.WriteLine(result);
+
+            }
+            catch (Refit.ApiException ex)
             {
                 Console.WriteLine(ex.Content);
             }
