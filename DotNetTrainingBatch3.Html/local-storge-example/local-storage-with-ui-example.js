@@ -1,11 +1,16 @@
 const tblBlog = "Tbl_Blog";
 let _blogId="";
+let _alertOption=3;   // 1 - Normal , 2 - SweetAlert , 3 - Notiflix
 
 runBlog();
 
 function runBlog() {
 
       readBlog();
+
+      //generateSampleData();
+
+    
     // createBlog('title','author','content');
     // editBlog("63be0c56-d54b-48be-940e-735c42f84b32");
     // editBlog("63be0c56-d54b-48be-940e-735c42f84b321111");
@@ -19,9 +24,20 @@ function runBlog() {
 
 }
 
+function generateSampleData()
+{
+    for(var i=0;i<200;i++)
+      {
+        let number=i+1;
+        createBlog("Title"+number,"Autor"+number,`Content${number}`);
+      }
+}
 
 function readBlog() {
 
+    if ( $.fn.DataTable.isDataTable('#blogTable') ) {
+        $('#blogTable').DataTable().destroy();
+      }
     $('#tbodyData').html('');
     let htmlRow='';
     let lsBlog = [];
@@ -49,6 +65,8 @@ function readBlog() {
 
 
     $('#tbodyData').html(htmlRow);
+    
+    new DataTable('#blogTable');
 }
 
 
@@ -89,6 +107,8 @@ function updateBlog(id, title, author, content) {
 
     setLocalStorage(lstBlog);
 
+    readBlog();
+
 }
 
 function createBlog(title, author, content) {
@@ -106,25 +126,65 @@ function createBlog(title, author, content) {
     lsBlog.push(blog);
 
     setLocalStorage(lsBlog);
+
+    readBlog();
 }
 
 function deleteBlog(id) {
+   
+    if(_alertOption===1)
+    {
+   let result=confirm('are you sure to delete?');
+   if(!result) return;
 
-    let result=confirm('are you sure to delete?');
-    if(!result) return;
+   DeleteBlogAndShowBlogList(id);
 
-
-    var lsBlog = getBlogs();
-    var item = lsBlog.filter(x => x.Id === id);
-    if (item.length == 0) {
-        console.log('No Data found.');
-        return;
     }
+    else if(_alertOption===2)
+    {
+        Swal.fire({
+            title: "Confirm?",
+            text: "Are you sure to delete",
+            icon: "question",
+            showCancelButton: true,     
+            confirmButtonText: "Yes"
+          }).then((result) => {
+            if (result.isConfirmed) {
+             
+                DeleteBlogAndShowBlogList(id);
+            }
+          });
+    }
+   else if(_alertOption===3)
+   {
+    Notiflix.Confirm.show(
+        'Confirm',
+        'Are you sure to delete',
+        'Yes',
+        'No',
+        function okCb() {
 
-    var item2 = lsBlog.filter(x => x.Id != id);
-    setLocalStorage(item2);
+            Notiflix.Block.circle('#frm1');
+            setTimeout(()=>
+            {
+                DeleteBlogAndShowBlogList(id);
+                Notiflix.Block.remove('#frm1');
+            },3000);
 
-    readBlog();
+            
+        },
+        function cancelCb() {
+        
+        },
+        {
+        },
+        );
+   }
+
+
+
+
+   
 }
 function getBlogs() {
     let lstBlogs = [];
@@ -154,14 +214,26 @@ $('#btnSave').click(function () {
 
     if(_blogId=="")
     {
-        createBlog(title, author, content);
-        alert("Saving Successful");
+        Notiflix.Loading.circle();
+        setTimeout(()=>
+        {
+            createBlog(title, author, content);
+            Notiflix.Loading.remove();
+            showMessage("Saving Successful");
+        },3000);
+       
     }
     else
     {
-        updateBlog(_blogId,title,author,content);
-        alert("Updating Successful");
-        _blogId="";
+        Notiflix.Loading.circle();
+        setTimeout(()=>
+        {
+            updateBlog(_blogId,title,author,content);
+            Notiflix.Loading.remove();
+            showMessage("Updating Successful");
+             _blogId="";
+        },3000);
+    
     }
 
     
@@ -175,3 +247,46 @@ $('#btnSave').click(function () {
 
     readBlog();
 });
+
+
+function showMessage(message)
+{
+    if(_alertOption===1)
+    {
+        alert(message);
+    }
+    else if(_alertOption===2)
+    {
+        Swal.fire({
+            title: "Success",
+            text: message,
+            icon: "success"
+        });
+    }
+    else if(_alertOption===3)
+    {
+      //  Notiflix.Notify.success(message);
+      Notiflix.Report.success(
+        'Success',
+        message,
+        'Okay',
+        );
+    }
+    
+}
+
+
+function DeleteBlogAndShowBlogList(id)
+{
+    var lsBlog = getBlogs();
+    var item = lsBlog.filter(x => x.Id === id);
+    if (item.length == 0) {
+        console.log('No Data found.');
+        return;
+    }
+
+    var item2 = lsBlog.filter(x => x.Id != id);
+    setLocalStorage(item2);
+
+    readBlog();
+}
