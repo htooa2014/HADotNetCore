@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Picker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css">
+</head>
+<body>
+    <input data-toggle="datepicker">
+<textarea data-toggle="datepicker"></textarea>
+<div data-toggle="datepicker">Click Me</div>
+<input type="text" id="date-picker">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"></script>
+<script>
+    $('[data-toggle="datepicker"]').datepicker();
+    $("#date-picker").datepicker({
+        autoHide:true,
+        format:"dd/mm/yyyy"
+    });
+</script>
+</body>
+</html>

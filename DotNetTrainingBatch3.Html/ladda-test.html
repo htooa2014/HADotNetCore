@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://cdn.tutorialjinni.com/Ladda/1.0.0/ladda.min.css" />
+</head>
+<body>
+    
+    <button type="submit" class="ladda-button" data-style="zoom-out" name="submit">
+        <span class="ladda-label">Submit</span>
+        <span class="ladda-spinner"></span>
+    </button>
+    <script src="https://cdn.tutorialjinni.com/Ladda/1.0.0/spin.min.js"></script>
+    <script src="https://cdn.tutorialjinni.com/Ladda/1.0.0/ladda.min.js"></script>
+    <script>
+        Ladda.bind( '.ladda-button', { timeout: 2000 } );
+    </script>
+</html>

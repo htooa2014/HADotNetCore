@@ -1,6 +1,10 @@
 const tblBlog = "Tbl_Blog";
 let _blogId = "";
-let _alertOption = 1;   // 1 - Normal , 2 - SweetAlert , 3 - Notiflix
+let _alertOption = 3;   // 1 - Normal , 2 - SweetAlert , 3 - Notiflix   , 4 - Toastify JS
+let _loadingOption=1;  //1- Notiflix   , 2 - Ladda button
+
+
+
 
 runBlog();
 
@@ -49,7 +53,7 @@ function readBlog() {
         <tr>
         <td>
         <button type="button" class="btn btn-warning" onclick="editBlog('${item.Id}')">Edit</Button>
-        <button type="button" class="btn btn-danger"  onclick="deleteBlog('${item.Id}')">Delete</Button>
+        <button type="button" id="deleteButton" class="btn btn-danger"  onclick="deleteBlog('${item.Id}')">Delete</Button>
         </td>
         <th scope="row">${i + 1}</th>
         <td>${item.Title}</td>
@@ -130,14 +134,30 @@ function createBlog(title, author, content) {
 
 function deleteBlog(id) {
 
+    let deleteButton = Ladda.create(document.querySelector('#deleteButton'));
+
     if (_alertOption === 1) {
         let result = confirm('are you sure to delete?');
         if (!result) return;
 
-        Notiflix.Block.circle('#frm1');
+        if(_loadingOption==1)
+        {
+            Notiflix.Block.circle('#frm1');
+        } 
+         else  if(_loadingOption==2){
+            deleteButton.start();
+           } 
+            
         setTimeout(() => {
             DeleteBlogAndShowBlogList(id);
+           
+            if(_loadingOption==1)
+            {
             Notiflix.Block.remove('#frm1');
+            }
+            else  if(_loadingOption==2){
+                deleteButton.stop();
+            }
         }, 3000);
 
     }
@@ -150,11 +170,29 @@ function deleteBlog(id) {
             confirmButtonText: "Yes"
         }).then((result) => {
             if (result.isConfirmed) {
-
-                Notiflix.Block.circle('#frm1');
+               
+                if(_loadingOption==1)
+                {
+                    Notiflix.Block.circle('#frm1');
+                }
+                else if(_loadingOption==2)
+                {
+                    deleteButton.start();
+                }
+               
+               
                 setTimeout(() => {
                     DeleteBlogAndShowBlogList(id);
-                    Notiflix.Block.remove('#frm1');
+
+                    if(_loadingOption==1)
+                    {
+                        Notiflix.Block.remove('#frm1');
+                    }
+                    else if(_loadingOption==2)
+                    {
+                        deleteButton.stop();
+                    }
+                   
                 }, 3000);
             }
         });
@@ -167,10 +205,29 @@ function deleteBlog(id) {
             'No',
             function okCb() {
 
-                Notiflix.Block.circle('#frm1');
+                if(_loadingOption==1)
+                    {
+                        Notiflix.Block.circle('#frm1');
+                    }
+                    else if(_loadingOption==2)
+                    {
+                        deleteButton.start();
+                    }
+
+               
                 setTimeout(() => {
                     DeleteBlogAndShowBlogList(id);
-                    Notiflix.Block.remove('#frm1');
+
+                    if(_loadingOption==1)
+                    {
+                        Notiflix.Block.remove('#frm1');
+                    }
+                    else if(_loadingOption==2)
+                    {
+                        deleteButton.stop();
+                    }
+
+                   
                 }, 3000);
 
 
@@ -209,17 +266,47 @@ function uuidv4() {
     );
 }
 
-$('#btnSave').click(function () {
+$('#btnSave').click(function (e) {
+    e.preventDefault();
+
+    var l=Ladda.create(this);
+   
     const title = $('#Title').val();
     const author = $('#Author').val();
     const content = $('#Content').val();
 
     if (_blogId == "") {
-        Notiflix.Loading.circle();
+
+        if(_loadingOption==1) {
+            Notiflix.Loading.circle();
+        }
+        else if(_loadingOption==2) {
+            l.start();
+        }
+      
+
+       
         setTimeout(() => {
             createBlog(title, author, content);
-            Notiflix.Loading.remove();
+            if(_loadingOption==1) {
+                Notiflix.Loading.remove();
+            }
+            else if(_loadingOption==2) {
+                l.stop();
+            }
+
+           
+           
             showMessage("Saving Successful");
+
+            $('#Title').val('');
+            $('#Author').val('');
+            $('#Content').val('');
+        
+            $('#Title').focus();
+        
+        
+            readBlog();
         }, 3000);
 
     }
@@ -230,20 +317,21 @@ $('#btnSave').click(function () {
             Notiflix.Loading.remove();
             showMessage("Updating Successful");
             _blogId = "";
+            $('#Title').val('');
+            $('#Author').val('');
+            $('#Content').val('');
+        
+            $('#Title').focus();
+        
+        
+            readBlog();
         }, 3000);
 
     }
 
 
 
-    $('#Title').val('');
-    $('#Author').val('');
-    $('#Content').val('');
-
-    $('#Title').focus();
-
-
-    readBlog();
+  
 });
 
 

@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="..\notiflx-plugins\notiflix-3.2.7.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css">
   <link href="sign-in.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.tutorialjinni.com/Ladda/1.0.0/ladda.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -30,9 +32,14 @@
         <label for="Content" class="form-label">Content</label>
         <input type="text" class="form-control" id="Content">
       </div>
-      <button class="btn btn-primary w-100 py-2" type="button" id="btnSave">Save</button>
-
-
+      <!-- <button class="btn btn-primary w-100 py-2" type="button" id="btnSave">Save</button> -->
+      <!-- <button  type="button" data-color="green" id="btnSave" class="btn btn-primary ladda-button" data-style="expand-left">
+        <span class="ladda-label">Save</span></button> -->
+        <!-- <button class="ladda-button"  type="button" id="btnSave" data-style="expand-left">Save</button> -->
+        <button  class="ladda-button" type="button" id="btnSave" data-color="blue" data-style="zoom-out" name="submit">
+          <span class="ladda-label">Save</span>
+          <span class="ladda-spinner"></span>
+      </button>
       <table class="table" id="blogTable">
         <thead>
           <tr>
@@ -47,20 +54,25 @@
 
         </tbody>
       </table>
-
+ <!-- ladda button effect -->
+ <!-- <button class="btn btn-primary ladda-button" data-style="expand-left"><span class="ladda-label">expand-left</span></button> -->
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
     </form>
 
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
   <script src="..\notiflx-plugins\notiflix-3.2.7.min.js"></script>
 
   <script src="local-storge-example/local-storage-with-ui-example.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.tutorialjinni.com/Ladda/1.0.0/spin.min.js"></script>
+  <script src="https://cdn.tutorialjinni.com/Ladda/1.0.0/ladda.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>
