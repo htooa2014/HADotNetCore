@@ -1,0 +1,23 @@
+﻿@model ATMModel
+<form action="/ATM/Save" method="post">
+    <div>
+        <label class="form-label">User Name</label>
+        <input type="text" class="form-control" id="UserName" name="UserName" />
+    </div>
+    <div>
+        <label class="form-label">Password</label>
+        <input type="text" class="form-control" id="Password" name="Password" />
+    </div>
+    <div>
+        <label class="form-label">Card Number</label>
+        <input type="text" class="form-control" id="CardNumber" name="CardNumber" />
+    </div>
+
+    <div>
+        <label class="form-label">Balance</label>
+        <input type="text" class="form-control" id="Balance" name="Balance" />
+    </div>
+    <a href="/ATM" class="btn btn-dark">Back</a>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>

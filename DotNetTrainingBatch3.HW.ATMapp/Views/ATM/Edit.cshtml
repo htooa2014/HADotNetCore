@@ -1,0 +1,22 @@
+﻿@model ATMModel
+<form action="/ATM/Update/@Model.AtmId" method="post">
+    <div>
+        <label class="form-label">User Name</label>
+        <input type="text" class="form-control" id="UserName" value="@Model.UserName" name="UserName" />
+    </div>
+    <div>
+        <label class="form-label">Password</label>
+        <input type="text" class="form-control" id="Password" value="@Model.Password" name="Password" />
+    </div>
+    <div>
+        <label class="form-label">Card Number</label>
+        <input type="text" class="form-control" id="CardNumber" value="@Model.CardNumber" name="CardNumber" />
+    </div>
+    <div>
+        <label class="form-label">Balance</label>
+        <input type="text" class="form-control" id="Balance" value="@Model.Balance" name="Balance" />
+    </div>
+    <a href="/ATM" class="btn btn-dark">Back</a>
+
+    <button type="submit" class="btn btn-success">Update</button>
+</form>

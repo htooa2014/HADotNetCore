@@ -1,0 +1,37 @@
+﻿@model List<ATMModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "ATM";
+    int count = 0;
+}
+<h4>ATM List</h4>
+<a href="/ATM/Create" class="btn btn-success">New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col">#</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Password</th>
+            <th scope="col">Card Number</th>
+            <th scope="col">Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ATMModel item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/ATM/Edit/@item.AtmId" class="btn btn-warning">Edit</a>
+                    <a href="/ATM/Delete/@item.AtmId" class="btn btn-danger">Delete</a>
+                </td>
+                <th scope="row"> @(++count) </th>
+                <td>@item.UserName</td>
+                <td>@item.Password</td>
+                <td>@item.CardNumber</td>
+                <td>@item.Balance</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
