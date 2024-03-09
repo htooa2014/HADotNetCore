@@ -1,0 +1,18 @@
+﻿@model BlogModel
+<form action="/Blog/Save" method="post">
+    <div>
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" id="BlogTitle" name="BlogTitle" />
+    </div>
+    <div>
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" id="BlogAuthor" name="BlogAuthor" />
+    </div>
+    <div>
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" id="BlogContent" name="BlogContent" />
+    </div>
+    <a href="/Blog" class="btn btn-dark">Back</a>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
