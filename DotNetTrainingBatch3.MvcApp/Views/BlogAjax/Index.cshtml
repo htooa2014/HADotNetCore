@@ -1,0 +1,122 @@
+﻿@model List<BlogModel>
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Blog";
+    int count = 0;
+}
+<h4>Blog</h4>
+<a href="/BlogAjax/Create" class="btn btn-success">New</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BlogModel item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/BlogAjax/Edit/@item.BlogId" class="btn btn-warning">Edit</a>
+                   @*  <a href="/BlogAjax/Delete/@item.BlogId" class="btn btn-danger">Delete</a> *@
+                    <buton typeof="button" class="btn btn-danger btn-Delete" data-blog-id="@item.BlogId"  data-id="@item.BlogId">Delete</buton>
+                </td>
+                <th scope="row"> @(++count) </th>
+                <td>@item.BlogTitle</td>
+                <td>@item.BlogAuthor</td>
+                <td>@item.BlogContent</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+@* $('.btn-Delete').data('blog-id')
+$('.btn-Delete').data('id') *@
+@section scripts {
+    <script>
+        // alert('');
+        $('.btn-Delete').click(function () {
+
+            let id = $(this).data('blog-id');
+
+            //Confirmation
+            Swal.fire({
+                title: "Confirm?",
+                text: "Are you sure to delete",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+
+                    deleteBlog(id);
+
+
+                }
+            });
+
+
+
+
+
+
+
+        })
+
+
+                function deleteBlog(id) {            
+                let _requestModel = {
+                    Blogid: id
+                };
+                // if JSON.stringify, need  contentType
+                $.ajax({
+                    url: "/BlogAjax/Delete",
+                    data: { blog: _requestModel },
+                    // data: JSON.stringify(_requestModel),
+                    type: "POST",
+                    // contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.IsSuccess) {
+
+
+
+                            Swal.fire({
+                                title: "Success",
+                                text: result.Message,
+                                icon: "success",
+
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+
+                                    location.href = "/BlogAjax";
+                                }
+                            });
+
+
+
+                        }
+                        else {
+                            Swal.fire({
+                                title: "Error",
+                                text: result.Message,
+                                icon: "error"
+                            });
+                        }
+
+                    },
+                    error: function (errormessage) {
+                        console.log(errormessage);
+
+                    }
+                });
+
+                }
+    </script>
+}
