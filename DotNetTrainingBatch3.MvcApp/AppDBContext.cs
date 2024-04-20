@@ -27,5 +27,8 @@ namespace DotNetTrainingBatch3.MvcApp
         }
 
         public DbSet<BlogModel> Blogs { get; set; }
+        public DbSet<PageStatisticsModel> PageStatistics { get; set; }
+
+        public DbSet<RadarChartModel> Radar { get; set; }
     }
 }

@@ -30,9 +30,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="BlogAjax" asp-action="Index">Blog (Ajax)</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Apex Charts
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/ApexChart/PieChart">Pie</a></li>
+                                <li><a class="dropdown-item" href="/ApexChart/DashedLineChart">Dashed Line</a></li>
+                                <li><a class="dropdown-item" href="/ApexChart/RadarChart?id=0">Basic Radar Chart</a></li>
+                                <li><a class="dropdown-item" href="/ApexChart/RadarChart?id=1">Radar Chart (Multi Series)</a></li>
+                            </ul>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -53,6 +62,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @await RenderSectionAsync("scripts", required: false)
     
 </body>

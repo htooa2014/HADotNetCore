@@ -1,0 +1,41 @@
+﻿@model ApexChartRadarResponseModel 
+@{
+    var _series = Model.Series;
+    var _labels = Model.Labels;
+    var _text = _series.Count > 1 ? "'Radar Chart - Multi Series'" : "'Basic Radar Chart'";
+
+}
+<div id="chart"></div>
+@section scripts {
+    <script>
+        // let _series = [{
+        //     name: 'Series 1',
+        //     data: [80, 50, 30, 40, 100, 20],
+        // }];
+        // let _labels = ['January', 'February', 'March', 'April', 'May', 'June'];
+
+        let _series = @Html.Raw(JsonConvert.SerializeObject(_series));
+        let _labels = @Html.Raw(JsonConvert.SerializeObject(_labels));
+        let _text = @Html.Raw(_text);
+
+        var options = {
+            series: _series,
+            chart: {
+                height: 350,
+                type: 'radar',
+            },
+            title: {
+                text: _text
+            },
+            xaxis: {
+                categories: _labels
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+
+    </script>
+
+}
