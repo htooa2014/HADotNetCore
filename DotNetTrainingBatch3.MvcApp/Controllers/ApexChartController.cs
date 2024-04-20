@@ -39,30 +39,46 @@ namespace DotNetTrainingBatch3.MvcApp.Controllers
 
         public IActionResult RadarChart(int id)
         {
-            
+
             AppDBContext db = new AppDBContext();
             var list = db.Radar.ToList();
             ApexChartRadarResponseModel model = new ApexChartRadarResponseModel();
             List<ApexChartRadarModel> listSeries = new List<ApexChartRadarModel>();
-            var listSeries1 = list.Select(x => x.Series1).ToList();           
+            var listSeries1 = list.Select(x => x.Series1).ToList();
             var listMonth = list.Select(x => x.Month).ToList();
 
-          
-            
+
+
 
             listSeries.Add(new ApexChartRadarModel { name = "Series 1", data = listSeries1 });
 
-            if(id == 1)
+            if (id == 1)
             {
                 var listSeries2 = list.Select(x => x.Series2).ToList();
                 var listSeries3 = list.Select(x => x.Series3).ToList();
 
                 listSeries.Add(new ApexChartRadarModel { name = "Series 2", data = listSeries2 });
                 listSeries.Add(new ApexChartRadarModel { name = "Series 3", data = listSeries3 });
-            
-            }
-               
 
+            }
+
+
+            model.Series = listSeries;
+            model.Labels = listMonth;
+
+
+            return View(model);
+        }
+
+        public IActionResult LocalGoldPriceChart()
+        {
+            AppDBContext db = new AppDBContext();
+            var list = db.LocalGoldPrice.ToList();
+            LocalGoldPriceResponseModel model = new LocalGoldPriceResponseModel();
+            
+            var listSeries = list.Select(x => x.Price).ToList();
+            var listMonth = list.Select(x => x.Year).ToList();        
+            
             model.Series = listSeries;
             model.Labels = listMonth;
 

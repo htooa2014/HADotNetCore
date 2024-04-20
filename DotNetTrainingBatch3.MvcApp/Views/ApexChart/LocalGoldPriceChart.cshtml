@@ -1,0 +1,53 @@
+﻿@model LocalGoldPriceResponseModel
+@{
+    List<Decimal> _series = Model.Series;
+    List<int> _labels = Model.Labels;
+}
+<div id="chart"></div>
+
+@section scripts {
+    <script>
+        // let _series = [10, 41, 35, 51, 49, 62, 69, 91, 148];
+        // let _labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
+
+        let _series = @Html.Raw(JsonConvert.SerializeObject(_series));
+        let _labels = @Html.Raw(JsonConvert.SerializeObject(_labels));
+
+
+        var options = {
+            series: [{
+                name: "Gold Price",
+                data: _series
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Myanmar Yearly Gold Prices',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: _labels,
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}

@@ -30,5 +30,7 @@ namespace DotNetTrainingBatch3.MvcApp
         public DbSet<PageStatisticsModel> PageStatistics { get; set; }
 
         public DbSet<RadarChartModel> Radar { get; set; }
+
+        public DbSet<LocalGoldPriceModel> LocalGoldPrice { get; set; }
     }
 }
