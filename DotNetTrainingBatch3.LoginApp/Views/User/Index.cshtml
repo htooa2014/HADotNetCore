@@ -4,12 +4,12 @@
     ViewBag.Title = "Login";
 }
 <div class="quotebox">
-@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+@using (Html.BeginForm("Create", "User", FormMethod.Post))
 {
    
       @*   <fieldset > *@
         @* <legend</legend> *@
-        <h3>MVC Simple Login Form</h3>
+        <h3>Create New User</h3>
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         @if (ViewBag.Message != null)
@@ -44,7 +44,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Create" />
                    
                
                     
@@ -53,11 +53,10 @@
             </tr>
         </table>
         
-        <div style="text-align:right;">
-            <a href="/User/Create">Create New User</a>
-        </div>
+       
     @*  </fieldset> 
-    *@}
+    *@
+}
 </div>
 <style>
  

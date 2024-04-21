@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainingBatch3.MvcApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainingBatch3.HW.ATMapp", "DotNetTrainingBatch3.HW.ATMapp\DotNetTrainingBatch3.HW.ATMapp.csproj", "{67CB41B5-8BBE-4778-BDD1-364A6E3DFBDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.LoginApp", "DotNetTrainingBatch3.LoginApp\DotNetTrainingBatch3.LoginApp.csproj", "{FB55F00A-A691-4CB1-8091-8014532B18F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTrainingBatch3.LoginApp", "DotNetTrainingBatch3.LoginApp\DotNetTrainingBatch3.LoginApp.csproj", "{FB55F00A-A691-4CB1-8091-8014532B18F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.ChatApp", "DotNetTrainingBatch3.ChatApp\DotNetTrainingBatch3.ChatApp.csproj", "{D80EEE77-4BE5-4FCB-BC45-7C2E8F3F682A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{FB55F00A-A691-4CB1-8091-8014532B18F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB55F00A-A691-4CB1-8091-8014532B18F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB55F00A-A691-4CB1-8091-8014532B18F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D80EEE77-4BE5-4FCB-BC45-7C2E8F3F682A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80EEE77-4BE5-4FCB-BC45-7C2E8F3F682A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80EEE77-4BE5-4FCB-BC45-7C2E8F3F682A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80EEE77-4BE5-4FCB-BC45-7C2E8F3F682A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

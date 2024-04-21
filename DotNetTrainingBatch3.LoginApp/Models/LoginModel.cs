@@ -1,8 +1,17 @@
-﻿namespace DotNetTrainingBatch3.LoginApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DotNetTrainingBatch3.LoginApp.Models
 {
+    [Table("Tbl_Login")]
     public class LoginModel
     {
-        public string UserName {  get; set; }
-        public string Password { get; set; }
+        [Key]
+        public int LoginID {  get; set; }
+        public string UserID { get; set; }
+
+        public string SessionID { get; set; }
+
+        public DateTime SessionExpired { get; set; }
     }
 }
