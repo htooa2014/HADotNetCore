@@ -97,5 +97,14 @@ namespace DotNetTrainingBatch3.ConsoleApp.EFCoreExamples
             Console.WriteLine(message);
 
         }
+
+        public void Generate(int count)
+        {
+            for(int i=0;i<count;i++)
+            {
+                int rowNo=i+1;
+                Create("Title" + rowNo, "Author" + rowNo, "Content" + rowNo);
+            }
+        }
     }
 }

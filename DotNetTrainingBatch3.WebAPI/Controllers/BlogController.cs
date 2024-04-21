@@ -15,12 +15,36 @@ namespace DotNetTrainingBatch3.WebAPI.Controllers
             _db = new AppDBContext();
         }
 
-        [HttpGet]
-        public IActionResult GetBlogs()
+        [HttpGet("{pageNo}/{pageSize}")]
+        [HttpGet("pageNo/{pageNo}/pageSize/{pageSize}")]
+        public IActionResult GetBlogs(int pageNo,int pageSize)
         {
-            List<BlogModel> blogs = _db.Blogs.ToList();
+            int rowCount = _db.Blogs.Count();
+            int pageCount = rowCount / pageSize;
+            if (rowCount % pageSize > 0)
+            {
+                pageCount++;
+            }
 
-            return Ok(blogs);
+
+            if(pageNo>pageCount)
+            {
+                return BadRequest(new { Message = "Invalid Page Number." });
+            }
+
+            List<BlogModel> blogs = _db.Blogs
+                .OrderByDescending(x=>x.BlogId)
+                .Skip((pageNo-1)*pageSize)
+                .Take(pageSize).ToList();
+
+            BlogResponseModel model = new BlogResponseModel();
+            model.Data = blogs;
+            model.PageNumber= pageNo;
+            model.PageSize = pageSize;
+           
+            model.PageCount = pageCount;
+
+            return Ok(model);
         }
 
 

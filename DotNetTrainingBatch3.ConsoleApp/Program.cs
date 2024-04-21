@@ -91,7 +91,7 @@ Console.WriteLine("Hello, World!");
 //dappterEx.Update(2, "Title4", "Author4", "Content4");
 //dappterEx.Delete(13);
 
-//EFCoreExample eFCoreExample = new EFCoreExample();
+EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Read();
 //eFCoreExample.Edit(1);
 //eFCoreExample.Edit(122);
@@ -99,6 +99,10 @@ Console.WriteLine("Hello, World!");
 //eFCoreExample.Update(21, "211 title", "211 author", "211 content");
 //eFCoreExample.Delete(9);
 //eFCoreExample.Delete(223333333);
+//eFCoreExample.Generate(391);
+
+
+
 
 Console.WriteLine("Waiting for API ....");
 Console.ReadKey();
@@ -112,9 +116,9 @@ Console.ReadKey();
 //RestClientExample restClientExample = new RestClientExample();
 //await restClientExample.Run();
 
-RefitExample refitExample = new RefitExample();
-refitExample.Run();
+//RefitExample refitExample = new RefitExample();
+//refitExample.Run();
 
-Console.ReadKey();
+//Console.ReadKey();
 
 
