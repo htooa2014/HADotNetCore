@@ -101,7 +101,7 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Delete(223333333);
 //eFCoreExample.Generate(391);
 
-
+//eFCoreExample.Generate(90);
 
 
 Console.WriteLine("Waiting for API ....");
